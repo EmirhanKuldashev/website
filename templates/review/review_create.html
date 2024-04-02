@@ -1,0 +1,14 @@
+{% extends 'components/navbar.html' %}  # Assuming your navbar template
+
+{% block content %}
+
+<h1>Leave a Review for {{ product.name }}</h1>
+
+<form action="{% url 'review_create_view' product.pk %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Submit Review">
+</form>
+
+{% endblock %}

@@ -8,23 +8,24 @@
     Price: {{ product.price }}
 </p>
 
-<p>Published on {{ product.created_at }} </p>
+<p>Published on: {{ product.created_at }}</p>
 
-<h1>
-    Tags:
-</h1>
+<p>Category: {{ product.category.name }}</p>
 
-{% for tag in post.tags.all %}
-    <p>{{ tag.name }}</p>
-{% endfor %}
+<img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 300px;">
 
-<h1>
-    Reviews:
-</h1>
+<p>{{ product.description }}</p>
 
-{% for comment in product.reviews.all %}
-    <p>{{ review.text }}</p>
-    <p>Published on {{ review.created_at }}</p>
-{% endfor %}
+<h2>Send review</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="review_text">Your Review:</label><br>
+        <textarea id="review_text" name="review_text" rows="4" cols="50" required></textarea>
+    </div>
+    <br>
+    <button type="submit">Send Review</button>
+</form>
 
 {% endblock %}

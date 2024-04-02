@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from product.views import main_view, hello_view, goodbye_view, current_date_view, product_list_view, \
-     product_detail_view, categories_view
+     product_detail_view, categories_view, product_create_view, review_create_view
 
 
 urlpatterns = [
@@ -31,6 +31,10 @@ urlpatterns = [
     path('products/', product_list_view),
     path('products/<int:product_id>/', product_detail_view),
     path('category/', categories_view),
+    path('products/create/', product_create_view),
+    path('', product_list_view, name='product_list'),
+    path('product/<int:product_pk>/detail/', product_detail_view, name='product_detail'),
+    path('product/<int:product_pk>/review/create/', review_create_view, name='review_create'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
